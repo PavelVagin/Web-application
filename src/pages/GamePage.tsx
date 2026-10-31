@@ -58,13 +58,14 @@ function GamePage() {
                                 className="yes"
                                 aria-label="Лайк"
                             >
-                                <Heart size={64} />
+                                <HeartCrack size={64} />
                             </button><button
                                 onClick={() => update(false)}
                                 className="no"
                                 aria-label="Дизлайк"
                             >
-                                <HeartCrack size={64} />
+
+                                <Heart size={64} />
                             </button>
 
                         </div>
