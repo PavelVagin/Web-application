@@ -42,6 +42,7 @@
   flex: 1;
   background-color: transparent;
   padding-left: 15px;
+  color: #e5e7eb;
 }
 
 .main_button {
@@ -465,6 +466,7 @@ button:disabled {
   justify-content: center;
   align-items: center;
   transition: background-color 0.2s ease;
+  color: #414345
 }
 
 .vote-buttons .yes {
@@ -474,6 +476,7 @@ button:disabled {
   justify-content: center;
   align-items: center;
   transition: background-color 0.2s ease;
+  color: #414345
 }
 
 .bottom-actions,
