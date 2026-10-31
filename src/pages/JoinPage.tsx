@@ -15,7 +15,7 @@ function JoinPage() {
         return (
             <Intro>
                 <div className="center-block">
-                    <h2>Приглашение не найдено</h2>
+                    <h2>Приглашение не найдено, попробуй снова</h2>
                 </div>
             </Intro>
         );
@@ -32,8 +32,8 @@ function JoinPage() {
     return (
         <Intro>
             <div className="join-form">
-                <h2>{invitation.name} приглашает выбрать кино вместе!</h2>
-                <p>Оцените те же 15 фильмов, и мы найдём совпадения</p>
+                <h2>{invitation.name} приглашает тебя собрать свой идеальный вишлист!</h2>
+                <p>Оцените 20 культовых моделей и найдите общий мэтч</p>
                 <Input value={name} onChange={setName} onClick={handleSaveName} />
             </div>
         </Intro>

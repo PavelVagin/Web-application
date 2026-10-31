@@ -38,8 +38,6 @@ function GamePage() {
         setSession(next);
     };
 
-    // TODO: загрузить сессию, хранить состояние игры и блокировки, найти текущий фильм.
-    // TODO: без сессии вернуться к началу; после всех голосов открыть QR или результаты.
     return (
         <main className="workspace">
             <Header />
@@ -49,25 +47,19 @@ function GamePage() {
                         <SwipeCard
                             movie={movie}
                             onChoice={update}
-                            disabled={locked}
-                        />
+                            disabled={locked} />
                         <div className="vote-buttons">
-
                             <button
-                                onClick={() => update(true)}
-                                className="yes"
-                                aria-label="Лайк"
-                            >
-                                <HeartCrack size={64} />
-                            </button><button
                                 onClick={() => update(false)}
                                 className="no"
-                                aria-label="Дизлайк"
-                            >
-
+                                aria-label="Дизлайк">
+                                <HeartCrack size={64} />
+                            </button><button
+                                onClick={() => update(true)}
+                                className="yes"
+                                aria-label="Лайк">
                                 <Heart size={64} />
                             </button>
-
                         </div>
                     </Fragment>
                 )}
@@ -76,15 +68,7 @@ function GamePage() {
                         onClick={undo}
                         disabled={!session.votes.length}
                     >
-                        <RotateCcw size={17} /> Отменить
-                    </button>
-                    <button
-                        onClick={() => {
-                            nav(session.role === 1 ? "share" : "/result", { replace: true })
-                        }}
-                        disabled={session.votes.length !== session.order.length}
-                    >
-                        Завершить
+                        <RotateCcw size={17} /> Отменить выбор
                     </button>
                 </div>
             </div>

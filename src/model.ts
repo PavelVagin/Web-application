@@ -4,8 +4,9 @@ export type Movie = {
     id: string;
     title: string;
     year: number;
-    genre: string;
+    create: string;
     poster: string;
+    brand: string
 };
 export type Invitation = {
     v: 1;
@@ -94,3 +95,18 @@ export const decodeInvitation = (encoded: string): Invitation | null => {
 };
 export const matches = (first: string[], second: string[]) =>
     second.filter((id) => first.includes(id));
+
+export const calcStatisticsByKey = (likes1: string[], likes2: string[], key: keyof Movie) => {
+    const uniqueLikes = new Set([...likes1, ...likes2]);
+    const allVariants: Set<string> = new Set();
+    movies.forEach((m) => {
+        allVariants.add(String(m[key]));
+    });
+    const result: Record<string, number> = {};
+    allVariants.forEach((variant) => {
+        const count = movies.filter((m) => String(m[key]) === variant && uniqueLikes.has(m.id)).length;
+        result[variant] = Math.round((count / uniqueLikes.size) * 100);
+    });
+    return result;
+};
+

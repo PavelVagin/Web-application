@@ -14,7 +14,7 @@ function Poster({ movie, small = false }: {
                     <span className="poster__shape">✦</span>
                     <strong>{movie.title}</strong>
                     <small>
-                        {movie.year} · {movie.genre}
+                        {movie.year} · {movie.create}
                     </small>
                 </div>
             )}

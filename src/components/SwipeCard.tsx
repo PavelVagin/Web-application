@@ -37,7 +37,7 @@ function SwipeCard({ movie, onChoice, disabled }: {
         >
             <Poster movie={movie} />
             <div className="card-shade" />
-            <span className="card-label">Кино и сериалы</span>
+            <span className="card-label">Культовая коллекция</span>
             <motion.span className="vote-stamp vote-stamp--no" style={{ opacity: no }}>
                 ДИЗЛАЙК
             </motion.span>
@@ -47,7 +47,7 @@ function SwipeCard({ movie, onChoice, disabled }: {
             <span className="card-meta">
                 <strong>{movie.title}</strong>
                 <small>
-                    {movie.year} · {movie.genre}
+                    {movie.year} · {movie.create}
                 </small>
             </span>
         </motion.div>

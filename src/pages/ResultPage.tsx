@@ -5,6 +5,7 @@ import { Header } from "../components/Header";
 import { Intro } from "../components/Intro";
 import { Poster } from "../components/Poster";
 import { clearSession, matches, movies, readSession } from "../model";
+import { calcStatisticsByKey } from "../model";
 
 function ResultPage() {
     const nav = useNavigate();
@@ -26,6 +27,8 @@ function ResultPage() {
 
     const mine = s.votes.filter((v) => v.liked).map((v) => v.id);
     const shown = tab === "matches" ? matches(s.first.likes, mine) : person === 1 ? s.first.likes : mine;
+    const result = calcStatisticsByKey(s.first.likes, mine, "brand")
+
 
     return (
         <main className="workspace">
@@ -36,7 +39,7 @@ function ResultPage() {
                         Совпадения
                     </button>
                     <button className={tab === "personal" ? "active" : ""} onClick={() => setTab("personal")}>
-                        Мой результат
+                        Результаты
                     </button>
                 </nav>
                 {tab === "personal" && (
@@ -49,6 +52,29 @@ function ResultPage() {
                         </button>
                     </div>
                 )}
+
+                {tab === "matches" && (
+                    <div className="brand-statistics" style={{ padding: '15px', background: '#f8fafc', borderRadius: '12px', marginBottom: '20px', border: '1px solid #e2e8f0' }}>
+                        <h3 style={{ marginBottom: '10px', fontSize: '15px', color: '#414345' }}>Совпадение вкусов по брендам:</h3>
+                        <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                            {Object.entries(result).map(([brand, percent]) => (
+                                <li key={brand} style={{ display: 'flex', justifyContent: 'between', padding: '6px 0', borderBottom: '1px solid #f1f5f9', fontSize: '14px' }}>
+                                    <span style={{ fontWeight: 600, color: '#334155' }}>{brand}:</span>
+                                    <span style={{ marginLeft: 'auto', color: '#10b981', fontWeight: 'bold' }}>{percent}%</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+
+                <div className="liked-count-info" style={{ padding: '0 10px', marginBottom: '15px', fontSize: '15px', color: '#e5e7eb', fontWeight: 500 }}>
+                    {tab === "matches" ? (
+                        <span>Совпало пар: <strong style={{ color: '#10b981' }}>{shown.length}</strong> из 20</span>
+                    ) : (
+                        <span> Понравилось пар: <strong style={{ color: '#10b981' }}>{person === 1 ? s.first.likes.length : mine.length}</strong> из 20</span>
+                    )}
+                </div>
+
                 {shown.length ? (
                     <div className="movie-grid">
                         {shown.map((id) => {
@@ -63,8 +89,9 @@ function ResultPage() {
                 ) : (
                     <div className="empty-state">
                         <HeartCrack size={50} />
-                        <h2>Пока нет совпадений</h2>
-                        <p>Может быть, вы выберете что-то новое в следующий раз?</p>
+                        <h2>Общих лайков пока нет</h2>
+                        <p>У вас не нашлось ни одного общего мэтча по моделям.
+                            Попробуйте свайпнуть заново!</p>
                     </div>
                 )}
                 <div className="result-footer">
@@ -73,8 +100,9 @@ function ResultPage() {
                             clearSession();
                             nav("/");
                         }}
+
                     >
-                        <RotateCcw size={16} /> Начать снова
+                        <RotateCcw size={16} /> Завершить
                     </button>
                 </div>
             </section>
