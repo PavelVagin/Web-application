@@ -86,13 +86,21 @@ function ResultPage() {
                             ) : null;
                         })}
                     </div>
-                ) : (
+                ) : tab === "matches" ? (
                     <div className="empty-state">
                         <HeartCrack size={50} />
                         <h2>Общих лайков пока нет</h2>
                         <p>У вас не нашлось ни одного общего мэтча по моделям.
                             Попробуйте свайпнуть заново!</p>
                     </div>
+                ) : (
+                    <div
+                        className="empty-state">
+                        <HeartCrack size={50} />
+                        <h2>В этот раз без мэтчей</h2>
+                        <p></p>
+                    </div>
+
                 )}
                 <div className="result-footer">
                     <button
