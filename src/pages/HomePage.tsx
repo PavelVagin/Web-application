@@ -13,7 +13,6 @@ function MainPage() {
             </h1>
 
             <div className="input-container">
-                {/* Ваш существующий инпут "Введите имя" */}
             </div>
 
             <p className="footer-text">

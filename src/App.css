@@ -45,6 +45,11 @@
   color: #e5e7eb;
 }
 
+.main_input::placeholder {
+  opacity: 1;
+  color: #e5e7eb;
+}
+
 .main_button {
   height: 100%;
   display: block;
